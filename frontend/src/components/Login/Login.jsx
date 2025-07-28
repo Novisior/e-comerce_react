@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,6 +12,10 @@ const Login = () => {
     console.log("Email:", email);
     console.log("Password:", password);
     // You can add actual login logic here
+  };
+
+  const handleRegisterRedirect = () => {
+    navigate("/register");
   };
 
   return (
@@ -38,6 +44,11 @@ const Login = () => {
         />
 
         <button type="submit">Login</button>
+
+        <p style={{ marginTop: "1rem" }}>Don't have an account?</p>
+        <button type="button" onClick={handleRegisterRedirect} className="register-btn">
+          Register
+        </button>
       </form>
     </div>
   );
