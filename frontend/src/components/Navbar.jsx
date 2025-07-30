@@ -6,7 +6,6 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="left">
-        {/* Logo image */}
         <img
           src="https://www.shutterstock.com/image-vector/cricket-club-player-logo-vector-600nw-2417731251.jpg"
           alt="Logo"
@@ -23,7 +22,7 @@ const Navbar = () => {
         <Link to="/" className="home-btn">Home</Link>
 
         <Link to="/product" title="Add Product">
-          <i className="ri-shopping-cart-line"></i>
+          <i className="ri-add-line" style={{ fontSize: "24px" }}></i> {/* ✅ changed icon */}
         </Link>
 
         <Link to="/login" title="Login">
