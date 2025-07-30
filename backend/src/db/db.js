@@ -1,13 +1,15 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose");
+require("dotenv").config(); // ✅ Load .env variables
 
-const connect=()=>{
-    mongoose.connect("mongodb://localhost:27017/VIPS")
-    .then(()=>{
-        console.log("Connected to MongoDB")
+const connect = () => {
+  mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+      console.log("✅ Connected to MongoDB Atlas");
     })
-    .catch((err)=>{
-        console.log("Error connecting to MongoDB")
-    })
-}
+    .catch((err) => {
+      console.error("❌ Error connecting to MongoDB:", err.message);
+    });
+};
 
-module.exports=connect;
+module.exports = connect;
