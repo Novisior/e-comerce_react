@@ -9,21 +9,21 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // ImageKit config — make sure keys are correct and secret keys are never exposed publicly
-const imagekit = new ImageKit({
-  publicKey: "public_pLadTxKfr4W3ntpIjIezmjVvYTA=",
-  privateKey: "private_sTJEmkbnIX2Ysj3+Lhb0bLwGMW8=",
-  urlEndpoint: "https://ik.imagekit.io/pxkhoaxnr",
-});
 
 // CREATE new product with image upload
 router.post("/add", upload.single("image"), async (req, res) => {
   try {
+    const imagekit = new ImageKit({
+      publicKey: process.env.PUBLIC_KEY,
+      privateKey: process.env.PRIVATE_KEY,
+      urlEndpoint: process.env.URLENDPOINT,
+    });
     const { title, category, price, description } = req.body;
     const uploadedImage = await imagekit.upload({
       file: req.file.buffer,
       fileName: req.file.originalname,
     });
-
+    
     const product = new productModel({
       title,
       category,
@@ -31,7 +31,7 @@ router.post("/add", upload.single("image"), async (req, res) => {
       description,
       image: uploadedImage.url,
     });
-
+    
     await product.save();
     res.status(201).json({ message: "Product saved", product });
   } catch (err) {
@@ -64,9 +64,14 @@ router.get("/:id", async (req, res) => {
 // UPDATE product by ID, optional new image upload
 router.put("/:id", upload.single("image"), async (req, res) => {
   try {
+    const imagekit = new ImageKit({
+      publicKey: process.env.PUBLIC_KEY,
+      privateKey: process.env.PRIVATE_KEY,
+      urlEndpoint: process.env.URLENDPOINT,
+    });
     const { title, category, price, description } = req.body;
     const updatedData = { title, category, price, description };
-
+    
     if (req.file) {
       const uploadedImage = await imagekit.upload({
         file: req.file.buffer,
@@ -74,7 +79,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       });
       updatedData.image = uploadedImage.url;
     }
-
+    
     const updated = await productModel.findByIdAndUpdate(req.params.id, updatedData, { new: true });
     if (!updated) return res.status(404).json({ error: "Product not found" });
 
