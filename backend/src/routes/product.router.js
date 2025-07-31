@@ -9,15 +9,15 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // ImageKit config — make sure keys are correct and secret keys are never exposed publicly
-const imagekit = new ImageKit({
-  publicKey: "public_pLadTxKfr4W3ntpIjIezmjVvYTA=",
-  privateKey: "private_sTJEmkbnIX2Ysj3+Lhb0bLwGMW8=",
-  urlEndpoint: "https://ik.imagekit.io/pxkhoaxnr",
-});
 
 // CREATE new product with image upload
 router.post("/add", upload.single("image"), async (req, res) => {
   try {
+    const imagekit = new ImageKit({
+      publicKey: process.env.PUBLIC_KEY,
+      privateKey: process.env.PRIVATE_KEY,
+      urlEndpoint: process.env.URLENDPOINT,
+    });
     const { title, category, price, description } = req.body;
     const uploadedImage = await imagekit.upload({
       file: req.file.buffer,

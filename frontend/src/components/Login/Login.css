@@ -22,12 +22,15 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* full height for better centering */
   padding: 24px;
-  background:
-    linear-gradient(180deg, #f7f7f7, var(--bg));
-  /* subtle upgrade from flat gray */
+
+background: 
+  linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+  url('https://images.unsplash.com/photo-1512719994953-eabf50895df7?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldHxlbnwwfHwwfHx8MA%3D%3D') 
+  no-repeat center center / cover;
+
 }
+
 
 /* ---- Card ---- */
 .login-form {

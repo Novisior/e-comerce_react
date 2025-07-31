@@ -2,7 +2,7 @@
 import React from "react";
 import "./App.css";
 
-import UserNavbar from "./components/userPage/UserNavbar";
+// import UserNavbar from "./components/userPage/UserNavbar";
 import UserHome from "./components/userPage/UserHome";
 import UserProductDetails from "./components/userPage/UserProductDetails";
 import UserAddToCart from "./components/userPage/UserAddToCart";
