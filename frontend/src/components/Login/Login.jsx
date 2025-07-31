@@ -2,16 +2,77 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // You can add actual login logic here
+    setLoading(true);
+    setError("");
+
+    try {
+      // For now, simulate different user roles based on email
+      // Replace this with actual API call later
+      console.log("Email:", email);
+      console.log("Password:", password);
+
+      // Simulate API response - replace with real backend call
+      let userData;
+      if (email.includes("admin")) {
+        userData = {
+          id: "1",
+          email: email,
+          name: email.split("@")[0],
+          role: "admin",
+          token: "fake-admin-token"
+        };
+      } else {
+        userData = {
+          id: "2",
+          email: email,
+          name: email.split("@")[0],
+          role: "user",
+          token: "fake-user-token"
+        };
+      }
+
+      // Call the onLogin function passed from App.jsx
+      onLogin(userData);
+
+      // TODO: Replace simulation with real API call:
+      /*
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        onLogin({
+          id: data.user.id,
+          email: data.user.email,
+          name: data.user.name,
+          role: data.user.role, // 'admin' or 'user'
+          token: data.token
+        });
+      } else {
+        setError(data.message || 'Login failed');
+      }
+      */
+    } catch (error) {
+      setError('Login failed. Please try again.');
+      console.error('Login error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleRegisterRedirect = () => {
@@ -23,14 +84,17 @@ const Login = () => {
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
 
+        {error && <div className="error-message">{error}</div>}
+
         <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
           value={email}
-          placeholder="Enter your email"
+          placeholder="Enter your email (try admin@test.com for admin access)"
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={loading}
         />
 
         <label htmlFor="password">Password</label>
@@ -41,12 +105,20 @@ const Login = () => {
           placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={loading}
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
 
         <p style={{ marginTop: "1rem" }}>Don't have an account?</p>
-        <button type="button" onClick={handleRegisterRedirect} className="register-btn">
+        <button
+          type="button"
+          onClick={handleRegisterRedirect}
+          className="register-btn"
+          disabled={loading}
+        >
           Register
         </button>
       </form>

@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ user, onLogout }) => {
   return (
     <div className="navbar">
       <div className="left">
@@ -11,7 +11,7 @@ const Navbar = () => {
           alt="Logo"
           className="logo"
         />
-        <h2>CRICKET SHOPYYYYY!!!!!</h2>
+        <h2>CRICKET SHOPYYYYY!!!!! - ADMIN</h2>
       </div>
 
       <div className="search">
@@ -22,12 +22,15 @@ const Navbar = () => {
         <Link to="/" className="home-btn">Home</Link>
 
         <Link to="/product" title="Add Product">
-          <i className="ri-add-line" style={{ fontSize: "24px" }}></i> {/* ✅ changed icon */}
+          <i className="ri-add-line" style={{ fontSize: "24px" }}></i>
         </Link>
 
-        <Link to="/login" title="Login">
-          <i className="ri-user-line"></i>
-        </Link>
+        <div className="user-section">
+          <span>Welcome, {user?.name || user?.email}</span>
+          <button onClick={onLogout} className="logout-btn">
+            <i className="ri-logout-box-line"></i> Logout
+          </button>
+        </div>
       </div>
     </div>
   );

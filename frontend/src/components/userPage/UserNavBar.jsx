@@ -1,21 +1,8 @@
 import React from "react";
 import "../Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const UserNavbar = () => {
-  const navigate = useNavigate();
-
-  // Replace with real auth check logic
-  const isLoggedIn = localStorage.getItem("token");
-  const username = localStorage.getItem("username");
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    alert("Logged out successfully!");
-    navigate("/login");
-  };
-
+const UserNavbar = ({ user, onLogout }) => {
   return (
     <div className="navbar">
       <div className="left">
@@ -37,21 +24,12 @@ const UserNavbar = () => {
           <i className="ri-shopping-cart-line"></i>
         </Link>
 
-        {isLoggedIn ? (
-          <>
-            <span>Hi, {username}</span>
-            <button onClick={handleLogout} className="logout-btn">Logout</button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" title="Login">
-              <i className="ri-user-line"></i>
-            </Link>
-            <Link to="/register" title="Register">
-              <i className="ri-user-add-line"></i>
-            </Link>
-          </>
-        )}
+        <div className="user-section">
+          <span>Hi, {user?.name || user?.email}</span>
+          <button onClick={onLogout} className="logout-btn">
+            <i className="ri-logout-box-line"></i> Logout
+          </button>
+        </div>
       </div>
     </div>
   );
