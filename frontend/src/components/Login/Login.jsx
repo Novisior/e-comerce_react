@@ -15,12 +15,10 @@ const Login = ({ onLogin }) => {
     setError("");
 
     try {
-      // For now, simulate different user roles based on email
-      // Replace this with actual API call later
+
       console.log("Email:", email);
       console.log("Password:", password);
 
-      // Simulate API response - replace with real backend call
       let userData;
       if (email.includes("admin")) {
         userData = {
@@ -40,7 +38,7 @@ const Login = ({ onLogin }) => {
         };
       }
 
-      // Call the onLogin function passed from App.jsx
+
       onLogin(userData);
 
       // TODO: Replace simulation with real API call:
