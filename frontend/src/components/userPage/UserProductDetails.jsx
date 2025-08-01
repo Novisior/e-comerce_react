@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import "../ProductDetails/ProductDetails.css";
+import "./UserProductDetails.css";
 
 const UserProductDetails = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const UserProductDetails = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
         setProduct(res.data);
         setLoading(false);
       } catch (err) {
@@ -30,7 +30,7 @@ const UserProductDetails = () => {
   const handleAddToCart = async () => {
     try {
       const userId = "shubh001"; // 🔁 Hardcoded for now
-      await axios.post("http://localhost:5000/api/cart/add", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/cart/add`, {
         userId,
         productId: product._id,
       });
@@ -42,7 +42,7 @@ const UserProductDetails = () => {
   };
 
   const handleBuyNow = () => {
-    alert("Buy Now clicked. Implement checkout logic here.");
+    alert( " coming soon........ ");
   };
 
   if (loading) return <p>Loading product details...</p>;

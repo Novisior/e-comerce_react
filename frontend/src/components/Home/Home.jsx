@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
         setProducts(res.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -33,12 +33,8 @@ const Home = () => {
           >
             <img src={product.image} alt={product.title} />
             <h3>{product.title}</h3>
-            <p>
-              <strong>Category:</strong> {product.category}
-            </p>
-            <p>
-              <strong>Price:</strong> ₹{product.price}
-            </p>
+            <p><strong>Category:</strong> {product.category}</p>
+            <p><strong>Price:</strong> ₹{product.price}</p>
           </Link>
         ))}
       </div>

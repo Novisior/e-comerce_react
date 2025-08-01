@@ -32,7 +32,7 @@ const ProductForm = () => {
     formData.append("price", price);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/products/add", formData);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/products/add`, formData);
       console.log("✅ Product added:", res.data);
       alert("Product added successfully!");
       // Reset form if needed

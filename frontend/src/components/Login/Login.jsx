@@ -76,7 +76,7 @@ const Login = ({ onLogin }) => {
   };
 
   const handleRegisterRedirect = () => {
-    navigate("/register");
+    alert(" coming soon........ ");
   };
 
   return (
@@ -91,7 +91,7 @@ const Login = ({ onLogin }) => {
           type="email"
           id="email"
           value={email}
-          placeholder="Enter your email (try admin@test.com for admin access)"
+          placeholder="Enter your email "
           onChange={(e) => setEmail(e.target.value)}
           required
           disabled={loading}

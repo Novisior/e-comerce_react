@@ -15,7 +15,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
         setProduct(res.data);
         setLoading(false);
       } catch (err) {
@@ -30,7 +30,7 @@ const ProductDetails = () => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`);
         alert("Product deleted successfully");
         navigate("/");
       } catch (err) {
@@ -75,7 +75,7 @@ const ProductDetails = () => {
           <div className="actions">
             <button
               className="update-btn"
-              onClick={() => navigate(`/product/edit/${product._id}`)} // ✅ FIXED ROUTE
+              onClick={() => navigate(`/product/edit/${product._id}`)}
             >
               UPDATE
             </button>

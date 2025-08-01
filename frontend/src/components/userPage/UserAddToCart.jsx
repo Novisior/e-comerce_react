@@ -9,7 +9,7 @@ const UserAddToCart = () => {
     const fetchCart = async () => {
       try {
         const userId = "shubh001"; // ✅ Same userId used as above
-        const res = await axios.get(`http://localhost:5000/api/cart?userId=${userId}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart?userId=${userId}`);
         setCartItems(res.data);
       } catch (err) {
         console.error("Failed to fetch cart items:", err);
@@ -21,7 +21,7 @@ const UserAddToCart = () => {
 
   const handleRemove = async (cartItemId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/remove/${cartItemId}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/remove/${cartItemId}`);
       setCartItems(cartItems.filter((item) => item._id !== cartItemId));
     } catch (err) {
       console.error("Failed to remove item:", err);

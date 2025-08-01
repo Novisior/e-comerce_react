@@ -27,14 +27,19 @@ const App = () => {
   useEffect(() => {
     const checkAuth = () => {
       try {
-        const savedUser = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
+        // For Vercel deployment, use sessionStorage instead of localStorage
+        // or implement a fallback system
+        const savedUser = sessionStorage.getItem('user') || localStorage.getItem('user');
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
 
         if (savedUser && token) {
           setUser(JSON.parse(savedUser));
         }
       } catch (error) {
         console.error('Error loading user data:', error);
+        // Clear both storage types on error
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('token');
         localStorage.removeItem('user');
         localStorage.removeItem('token');
       } finally {
@@ -47,14 +52,28 @@ const App = () => {
 
   const handleLogin = (userData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
-    localStorage.setItem('token', userData.token);
+    // Store in both for better compatibility
+    try {
+      sessionStorage.setItem('user', JSON.stringify(userData));
+      sessionStorage.setItem('token', userData.token);
+      localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('token', userData.token);
+    } catch (error) {
+      console.error('Error saving user data:', error);
+    }
   };
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    // Clear both storage types
+    try {
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+    } catch (error) {
+      console.error('Error clearing user data:', error);
+    }
   };
 
   if (loading) {
