@@ -89,7 +89,7 @@ const Login = ({ onLogin }) => {
           type="email"
           id="email"
           value={email}
-          placeholder="Enter your email "
+          placeholder="Enter your email (include 'admin' for admin access ) "
           onChange={(e) => setEmail(e.target.value)}
           required
           disabled={loading}
