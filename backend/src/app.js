@@ -25,9 +25,8 @@ app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/cart", cartRouter);
 
-// Home route (to avoid 404 on root)
 app.get("/", (req, res) => {
-  res.send("🛍️ E-commerce API is running");
+  res.send(" E-commerce API is running");
 });
 
 module.exports = app;
