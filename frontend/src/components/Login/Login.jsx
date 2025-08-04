@@ -74,7 +74,7 @@ const Login = ({ onLogin }) => {
   };
 
   const handleRegisterRedirect = () => {
-    alert(" no need to register you can login with any emailnd pass you want for user acess and any mail including "admin" for admin acess... and dont delete existing records add new one for testing purposes");
+    alert(" no need to register you can login with any emailnd pass you want for user acess and any mail including 'admin' for admin acess... and dont delete existing records add new one for testing purposes");
   };
 
   return (
