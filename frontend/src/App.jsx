@@ -23,7 +23,6 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Check authentication on app load
   useEffect(() => {
     const checkAuth = () => {
       try {
@@ -101,7 +100,6 @@ const App = () => {
     );
   }
 
-  // Admin Interface
   if (user.role === 'admin') {
     return (
       <div>
@@ -117,7 +115,6 @@ const App = () => {
     );
   }
 
-  // User Interface (default)
   return (
     <div>
       <UserNavbar user={user} onLogout={handleLogout} />
