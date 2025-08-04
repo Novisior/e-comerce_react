@@ -74,7 +74,7 @@ const Login = ({ onLogin }) => {
   };
 
 const handleRegisterRedirect = () => {
-  alert(`📌 No registration required!\n\nYou can log in with any email and password for **user access**.\n\nTo access the **admin panel**, use any email that includes the word "admin".\n\n⚠️ Please avoid deleting existing records — feel free to add new ones for testing.`);
+  alert(`📌 No registration required!\n\nYou can log in with any email and password for USER ACCESS.\n\nTo access the ADMIN PANEL, use any email that includes the word "admin".\n\n⚠️ Please avoid deleting existing records — feel free to add new ones for testing.`);
 };
 
 
