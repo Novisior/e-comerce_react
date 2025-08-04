@@ -19,7 +19,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`) // <-- fixed URL
+      .get(`${import.meta.env.VITE_API_URL}/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         setFormData({
@@ -48,7 +48,7 @@ const EditProduct = () => {
     e.preventDefault();
     const updatedFormData = new FormData();
     updatedFormData.append('title', formData.title);
-    updatedFormData.append('description', formData.description); // <-- added description
+    updatedFormData.append('description', formData.description);
     updatedFormData.append('category', formData.category);
     updatedFormData.append('price', formData.price);
     if (formData.image) {
@@ -56,8 +56,8 @@ const EditProduct = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, updatedFormData); // <-- fixed URL
-      navigate(`/product/${id}`); // <-- fixed navigation route
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/products/${id}`, updatedFormData);
+      navigate(`/product/${id}`);
     } catch (err) {
       console.error('Error updating product:', err);
       alert('Failed to update product. Please try again.');
