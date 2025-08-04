@@ -73,9 +73,10 @@ const Login = ({ onLogin }) => {
     }
   };
 
-  const handleRegisterRedirect = () => {
-    alert(" no need to register you can login with any emailnd pass you want for user acess and any mail including 'admin' for admin acess... and dont delete existing records add new one for testing purposes");
-  };
+const handleRegisterRedirect = () => {
+  alert(`📌 No registration required!\n\nYou can log in with any email and password for **user access**.\n\nTo access the **admin panel**, use any email that includes the word "admin".\n\n⚠️ Please avoid deleting existing records — feel free to add new ones for testing.`);
+};
+
 
   return (
     <div className="login-container">
