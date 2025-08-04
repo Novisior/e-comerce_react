@@ -7,7 +7,6 @@
   --radius: 10px;
 }
 
-/* === Fullscreen Background === */
 .login-container {
   display: flex;
   justify-content: center;
@@ -19,7 +18,6 @@
     url("https://images.unsplash.com/photo-1512719994953-eabf50895df7?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldHxlbnwwfHwwfHx8MA%3D%3D") no-repeat center center / cover;
 }
 
-/* === Login Box === */
 .login-form {
   background: #fff;
   padding: 2rem;
@@ -30,14 +28,12 @@
   box-sizing: border-box;
 }
 
-/* === Heading === */
 .login-form h2 {
   margin-bottom: 1.5rem;
   text-align: center;
   color: var(--primary);
 }
 
-/* === Form Inputs === */
 .login-form label {
   display: block;
   margin-top: 1rem;
@@ -88,7 +84,6 @@
   background-color: var(--success-hover);
 }
 
-/* === Error Text === */
 .error-message {
   color: var(--error);
   margin-top: 0.5rem;
