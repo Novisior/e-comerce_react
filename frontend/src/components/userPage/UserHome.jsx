@@ -21,8 +21,8 @@ const UserHome = () => {
 
   return (
     <div className="home-container">
-      <h1>Welcome to Cricket Shopyyyy (User View)</h1>
-      <p>Browse and view awesome cricket products!</p><br /><br />
+      <h1>Welcome to Cricket Shopyyyy</h1>
+      <p>Browse and get your NFTs!!!!!</p><br /><br />
 
       <div className="product-list">
         {products.map((product) => (
